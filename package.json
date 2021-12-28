@@ -16,6 +16,8 @@
     "concurrently": "^5.1.0"
   },
   "dependencies": {
-    "compression": "^1.7.4"
+    "apollo-server": "^3.5.0",
+    "compression": "^1.7.4",
+    "graphql": "^15.8.0"
   }
 }
