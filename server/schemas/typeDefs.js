@@ -27,13 +27,10 @@ const typeDefs = gql`
   type Query {
     users: [User]
     user(username: String!): User
-    (username: String): [Thought]
-    saveBook: Book
   }
 
   type Mutation {
-    createMatchup(tech1: String!, tech2: String!): Matchup
-    createVote(_id: String!, techNum: Int!): Matchup
+    saveBook: Book
   }
 `;
 

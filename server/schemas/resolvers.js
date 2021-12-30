@@ -4,11 +4,20 @@ const { signToken } = require("../utils/auth");
 
 const resolvers = {
   Query: {
-    users: async () => {
-      return User.find();
+    users: async (parent, args, context) => {
+      // if they have a token
+      if (context.user) {
+        return User.findOne();
+      }
     },
-    saveBook: async () => {
-      return Book.find();
+  },
+
+  Mutation: {
+    saveBook: async (parent, args, context) => {
+      // if they have a token
+      if (context.user) {
+        return Book.findOne();
+      }
     },
   },
 };
