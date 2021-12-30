@@ -2,17 +2,16 @@ const { gql } = require("apollo-server-express");
 
 const typeDefs = gql`
   type Book {
-    _id: ID!
-    authors: String
+    authors: [String]
     description: String!
-    bookId: String!
+    bookId: ID!
     image: String
     link: String
     title: String!
   }
 
   type User {
-    _id: ID
+    _id: ID!
     username: String!
     email: String!
     password: String!
@@ -25,12 +24,14 @@ const typeDefs = gql`
   }
 
   type Query {
-    users: [User]
-    user(username: String!): User
+    me: User
   }
 
   type Mutation {
-    saveBook: Book
+    # saveBook: Book
+    addUser(username: String!, email: String!, password: String!): Auth
+    login(email: String!, password: String!): Auth
+    # next queries will use context becuase we are already logged in
   }
 `;
 
