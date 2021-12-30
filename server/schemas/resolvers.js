@@ -34,12 +34,30 @@ const resolvers = {
       return { user, token };
     },
 
-    // saveBook: async (parent, args, context) => {
-    //   // if they have a token
-    //   if (context.user) {
-    //     return await Book.findOne();
-    //   }
-    // },
+    saveBook: async (parent, { _id, savedBooks }, context) => {
+      // if they have a token
+      if (context.user) {
+        const updatedUser = await User.findOneAndUpdate(
+          { _id: _id },
+          { $addToSet: { savedBooks: savedBooks } },
+          { new: true, runValidators: true }
+        );
+        return { updatedUser };
+      }
+      throw new AuthenticationError("You're not logged in!");
+    },
+    deleteBook: async (parent, { _id, savedBooks }, context) => {
+      // if they have a token
+      if (context.user) {
+        const updatedUser = await User.findOneAndUpdate(
+          { _id: _id },
+          { $pull: { savedBooks: { bookId: savedBooks.bookId } } },
+          { new: true, runValidators: true }
+        );
+        return { updatedUser };
+      }
+      throw new AuthenticationError("You're not logged in!");
+    },
   },
 };
 

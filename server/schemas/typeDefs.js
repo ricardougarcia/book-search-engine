@@ -32,6 +32,8 @@ const typeDefs = gql`
     addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
     # next queries will use context becuase we are already logged in
+    saveBook(_id: ID!, savedBooks: [Book]): User
+    deleteBook(_id: ID!, savedBooks: [Book]): User
   }
 `;
 
