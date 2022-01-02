@@ -1,16 +1,14 @@
 import gql from "graphql-tag";
 
 // Query to get one user.
-export const GET_USER = gql`
+export const QUERY_ME = gql`
   {
-    user {
+    me {
       _id
       username
       email
-      password
       savedBooks {
         # book typedef
-        _id
         authors
         description
         bookId

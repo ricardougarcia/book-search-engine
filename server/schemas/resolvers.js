@@ -31,27 +31,28 @@ const resolvers = {
         throw AuthenticationError("Cannot find user");
       }
       const token = signToken(user);
+      // we are returning both user and token as one object
       return { user, token };
     },
 
-    saveBook: async (parent, { _id, savedBooks }, context) => {
+    saveBook: async (parent, { bookData }, context) => {
       // if they have a token
       if (context.user) {
         const updatedUser = await User.findOneAndUpdate(
-          { _id: _id },
-          { $addToSet: { savedBooks: savedBooks } },
+          { _id: context.user._id },
+          { $addToSet: { savedBooks: bookData } },
           { new: true, runValidators: true }
         );
-        return { updatedUser };
+        return updatedUser;
       }
       throw new AuthenticationError("You're not logged in!");
     },
-    deleteBook: async (parent, { _id, savedBooks }, context) => {
+    deleteBook: async (parent, { bookId }, context) => {
       // if they have a token
       if (context.user) {
         const updatedUser = await User.findOneAndUpdate(
-          { _id: _id },
-          { $pull: { savedBooks: { bookId: savedBooks.bookId } } },
+          { _id: context.user._id },
+          { $pull: { savedBooks: { bookId } } },
           { new: true, runValidators: true }
         );
         return { updatedUser };
