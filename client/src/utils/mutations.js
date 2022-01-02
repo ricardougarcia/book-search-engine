@@ -1,18 +1,24 @@
 import gql from "graphql-tag";
 
-// export const SAVE_BOOK = gql`
-//     mutation saveBook(payload?) {
-//         {
-//             _id
-//         authors
-//         description
-//         bookId
-//         image
-//         link
-//         title
-//             }
-//         }
-// `;
+export const SAVE_BOOK = gql`
+  mutation saveBook($bookData: BookInput!) {
+    saveBook(savedBooks: $bookData) {
+      _id
+      username
+      email
+      savedBooks {
+        # book typedef
+        authors
+        description
+        bookId
+        image
+        link
+        title
+      }
+    }
+  }
+`;
+
 export const DELETE_BOOK = gql`
   mutation deleteBook($bookId: ID!) {
     deleteBook(bookId: $bookId) {
