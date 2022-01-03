@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+// import React, { useState, useEffect } from "react";
+import React from "react";
 import {
   Jumbotron,
   Container,
@@ -7,7 +8,7 @@ import {
   Button,
 } from "react-bootstrap";
 
-import { getMe, deleteBook } from "../utils/API";
+// import { getMe, deleteBook } from "../utils/API";
 import { QUERY_ME } from "../utils/queries";
 import { DELETE_BOOK } from "../utils/mutations";
 import { useQuery, useMutation } from "@apollo/client";
