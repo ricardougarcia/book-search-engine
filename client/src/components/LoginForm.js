@@ -8,7 +8,7 @@ import { useMutation } from "@apollo/react-hooks";
 import Auth from "../utils/auth";
 
 const LoginForm = () => {
-  const [login] = useMutation(LOGIN_USER);
+  const [login, { error }] = useMutation(LOGIN_USER);
   const [userFormData, setUserFormData] = useState({ email: "", password: "" });
   const [validated] = useState(false);
   const [showAlert, setShowAlert] = useState(false);

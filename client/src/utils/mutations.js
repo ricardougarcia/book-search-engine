@@ -1,18 +1,18 @@
 import gql from "graphql-tag";
 
 export const SAVE_BOOK = gql`
-  mutation saveBook($input: bookInput!) {
-    saveBook(input: $input) {
+  mutation saveBook($bookData: BookInput!) {
+    saveBook(bookData: $bookData) {
       _id
       username
       email
       savedBooks {
-        bookId
         authors
-        image
         description
-        title
+        bookId
+        image
         link
+        title
       }
     }
   }
@@ -57,15 +57,6 @@ export const LOGIN_USER = gql`
         _id
         username
         email
-        bookCount
-        savedBooks {
-          bookId
-          title
-          description
-          authors
-          image
-          link
-        }
       }
     }
   }
